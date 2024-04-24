@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a Todo</title>
+    <style>
+        
+    </style>
+    <script>
+        
+        const todos = [];
+
+       
+        function renderTodos() {
+            const todoList = document.getElementById('todo-list');
+            todoList.innerHTML = ''; // Clear the current list
+
+            
+            todos.forEach(todo => {
+                const listItem = document.createElement('li');
+                listItem.textContent = todo;
+                todoList.appendChild(listItem);
+            });
+        }
+
+        
+        function handleFormSubmit(event) {
+            event.preventDefault(); 
+            
+            const todoInput = document.getElementById('todo-input');
+            const newTodo = todoInput.value;
+
+           
+            todos.push(newTodo);
+
+            
+            todoInput.value = '';
+
+            
+            renderTodos();
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('todo-form');
+            form.addEventListener('submit', handleFormSubmit);
+        });
+    </script>
+</head>
+<body>
+    <h1>Add a Todo</h1>
+    
+    <form id="todo-form">
+        <input type="text" id="todo-input" placeholder="New todo" required>
+        <button type="submit">Add Todo</button>
+    </form>
+
+    <h2>Todo List</h2>
+   
+    <ol id="todo-list"></ol>
+</body>
+</html>
